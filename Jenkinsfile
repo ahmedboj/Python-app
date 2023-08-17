@@ -6,8 +6,8 @@ pipeline{
     }
 
     environment{
-        docker-image = "192.168.102.81:5000/python-app"
-        docker-tag = "1.0"
+        DOCKER_IMAGE = "192.168.102.81:5000/python-app"
+        DOCKER_TAG = "1.0"
     }
 
     stages{
