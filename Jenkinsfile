@@ -16,7 +16,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get update && apt-get install make'
+                sh 'apt-get update && apt-get install make -y'
                 sh 'make test'
             }
 
