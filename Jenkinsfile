@@ -20,7 +20,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get update && apt-get install make -y'
+                sh 'apt-get update && apt-get install make git python3 -y'
                 sh 'make test'
             }
 
