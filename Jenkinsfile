@@ -20,7 +20,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get update && apt-get install make git python3 python3-venv python3-dev gcc -y'
+                sh 'apt-get update && apt-get install make git python3.9 python3-venv python3-dev gcc -y'
                 sh 'python3 -m venv src/.venv'
                 sh 'make test'
             }
