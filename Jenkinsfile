@@ -20,7 +20,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get remove python3.10 -y'
+                sh 'dpkg -l | grep python3.10'
                 sh 'apt-get install python3.9 -y'
                 sh 'update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1'
                 sh 'apt-get update && apt-get install make git python3-venv python3-dev gcc -y'
