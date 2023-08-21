@@ -21,9 +21,8 @@ pipeline{
             steps{
                 echo "Running application tests"
                 sh 'apt-get update && apt-get install make git python3.9 python3-venv python3-dev gcc -y'
-                sh 'apt-get remove python3.10'
-                sh 'apt-get install python3.9'
-                sh 'sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1'
+                sh 'apt-get update && apt-get install make git python3.9 python3-venv python3-dev gcc -y'
+                sh 'update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9'
                 sh 'python3 -m venv src/.venv'
                 sh 'make test'
             }
@@ -37,8 +36,8 @@ pipeline{
                     sh "echo Username: \${USER}"
                     sh "echo ${PWD} | docker login -u ${USER} --password-stdin 192.168.102.81:5000"
                     sh 'docker build -t python-app:1.0 . '
-                    sh 'docker tag python-app:1.0 ${docker-image}:${docker-tag} '
-                    sh 'docker push ${docker-image}:${docker-tag} '
+                    sh 'docker tag python-app:1.0 ${DOCKER_IMAGE}:${DOCKER_TAG} '
+                    sh 'docker push ${DOCKER_IMAGE}:${DOCKER_TAG} '
 
                 }
 
@@ -58,8 +57,8 @@ pipeline{
                                 remote.user = userName
                                 remote.identityFile = identity
                                 sshCommand remote: remote, command: "echo Hello from remote host"
-                                sshCommand remote: remote, command: "docker pull ${docker-image}:${docker-tag}"
-                                sshCommand remote: remote, command: "docker run -d -p 8000:8000 ${docker-image}:${docker-tag}"
+                                sshCommand remote: remote, command: "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                                sshCommand remote: remote, command: "docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${DOCKER_TAG}"
 
                         }
                 }
