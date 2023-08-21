@@ -6,7 +6,7 @@ pipeline{
         }
     }
     parameters{
-        string(name: 'Host', defaultValue: '', description: 'The host Ip address for K8s master node')
+        string(name: 'Host', defaultValue: '192.168.102.82', description: 'The host Ip address for K8s master node')
     }
 
     environment{
