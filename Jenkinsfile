@@ -1,6 +1,10 @@
 pipeline{
-    agent any
-
+    agent{
+    	docker {
+            image 'ubuntu:latest' 
+            args '--privileged'
+        }
+    }
     parameters{
         string(name: 'Host', defaultValue: '', description: 'The host Ip address for K8s master node')
     }
@@ -16,7 +20,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get update && apt-get install make -y'
+                sh 'sudo apt-get update && apt-get install make -y'
                 sh 'make test'
             }
 
