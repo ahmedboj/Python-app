@@ -21,6 +21,8 @@ pipeline{
             steps{
                 echo "Running application tests"
                 sh 'apt-get update && apt-get install make git python3-venv python3-dev gcc -y'
+                sh 'python3 -m venv src/.venv'
+                sh 'source src/.venv/bin/activate && pip install -Ur src/requirements.txt'
                 sh 'make test'
             }
 
