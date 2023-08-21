@@ -21,6 +21,9 @@ pipeline{
             steps{
                 echo "Running application tests"
                 sh 'apt-get update && apt-get install make git python3.9 python3-venv python3-dev gcc -y'
+                sh 'apt-get remove python3.10'
+                sh 'apt-get install python3.9'
+                sh 'sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1'
                 sh 'python3 -m venv src/.venv'
                 sh 'make test'
             }
