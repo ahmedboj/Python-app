@@ -2,7 +2,7 @@ pipeline{
     agent{
     	docker {
             image 'ubuntu:latest' 
-            args '--privileged'
+            args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
         }
     }
     parameters{
