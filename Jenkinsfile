@@ -1,7 +1,6 @@
 pipeline{
     agent{
     	docker {
-            image 'python:3.9' 
             image 'ubuntu:lts' 
             args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
         }
@@ -19,6 +18,11 @@ pipeline{
         
         
         stage("Test the application"){
+            agent {
+                docker {
+                    image 'python:3.9'
+                }
+            }
             steps{
                 echo "Running application tests"
                 sh 'python3 -m venv src/.venv'
