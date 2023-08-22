@@ -21,7 +21,7 @@ pipeline{
             steps{
                 echo "Running application tests"
                 sh 'apt-get update && apt-get install python3.9 -y'
-                sh 'python3 -m venv src/.venv'
+                sh 'python3.9 -m venv src/.venv'
                 sh '. src/.venv/bin/activate'
                 // Install dependencies and run tests
                 sh 'apt-get update && apt-get install make python3.9 gcc pip git -y'
