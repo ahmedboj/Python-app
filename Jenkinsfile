@@ -20,7 +20,17 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get update && apt-get install make python3.9 gcc -y'
+                sh 'apt-get update && apt-get install make python3.9 gcc git -y'
+        
+                // Check if a virtual environment is activated
+                script {
+                    if (env.VIRTUAL_ENV) {
+                        echo "Virtual environment is activated: ${env.VIRTUAL_ENV}"
+                    } else {
+                        echo "No virtual environment activated"
+                    }
+                }
+        
                 sh 'make test'
             }
 
