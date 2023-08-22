@@ -1,7 +1,7 @@
 pipeline{
     agent{
     	docker {
-            image 'ubuntu:latest' 
+            image 'python:3.9' 
             args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
         }
     }
@@ -20,6 +20,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
+                sh 'python3 -m venv src/.venv'
                 sh '. src/.venv/bin/activate'
                 // Install dependencies and run tests
                 sh 'apt-get update && apt-get install make python3.9 gcc pip git -y'
