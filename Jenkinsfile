@@ -22,7 +22,9 @@ pipeline{
                 echo "Running application tests"
                 sh '. src/.venv/bin/activate'
                 // Install dependencies and run tests
-                sh 'apt-get update && apt-get install make python3.9 gcc git -y'
+                sh 'apt-get remove python3.10'
+                sh 'apt-get update && apt-get install make python3.9 gcc pip git -y'
+                sh ' update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1'
                 sh 'pip install -r src/requirements.txt'   
                 // Check if a virtual environment is activated
                 script {
