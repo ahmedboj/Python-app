@@ -20,7 +20,7 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'source src/.venv/bin/activate'
+                sh '. src/.venv/bin/activate'
                 // Install dependencies and run tests
                 sh 'apt-get update && apt-get install make python3.9 gcc git -y'
                 sh 'pip install -r src/requirements.txt'   
