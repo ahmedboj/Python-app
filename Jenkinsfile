@@ -18,13 +18,9 @@ pipeline{
         
         
         stage("Test the application"){
-            agent {
-                docker {
-                    image 'python:3.9'
-                }
-            }
             steps{
                 echo "Running application tests"
+                sh 'apt-get update && apt-get install python3.9 -y'
                 sh 'python3 -m venv src/.venv'
                 sh '. src/.venv/bin/activate'
                 // Install dependencies and run tests
