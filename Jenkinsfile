@@ -20,10 +20,11 @@ pipeline{
         stage("Test the application"){
             steps{
                 echo "Running application tests"
-                sh 'apt-get update && apt-get install python3.9  python3.9-venv -y'
+                //Create Virtual environment
+                sh 'apt-get update && apt-get install python3.9 python3.9-venv -y'
                 sh 'python3.9 -m venv src/.venv'
                 sh '. src/.venv/bin/activate'
-                // Install dependencies and run tests
+                // Install dependencies and run tests in the Virtual environment
                 sh 'apt-get update && apt-get install make python3.9 gcc pip git -y'
                 sh 'pip install -r src/requirements.txt'   
                 // Check if a virtual environment is activated
@@ -69,7 +70,7 @@ pipeline{
                                 remote.identityFile = identity
                                 sshCommand remote: remote, command: "echo Hello from remote host"
                                 sshCommand remote: remote, command: "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                                sshCommand remote: remote, command: "docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                                sshCommand remote: remote, command: "kubectl apply -f python-app-deployment.yaml"
 
                         }
                 }
