@@ -1,7 +1,7 @@
 pipeline{
     agent{
     	docker {
-            image 'ubuntu:lts' 
+            image 'ubuntu:20.04'
             args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
         }
     }
