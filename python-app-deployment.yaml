@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: python-app
-          image: 192.168.102.82:5000/python-app:1.0
+          image: 192.168.102.81:5000/python-app:1.0
           ports:
             - containerPort: 8000
           env:
