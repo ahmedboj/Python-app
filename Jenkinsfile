@@ -16,7 +16,18 @@ pipeline{
     }
 
     stages{
-        
+        stage('Checkout SCM') {
+            steps {
+                checkout([
+                  $class: 'GitSCM',
+                  branches: [[name: 'main']],
+                  userRemoteConfigs: [[
+                    url: 'https://github.com/rihem-mrz/Python-app.git',
+                    credentialsId: 'GIT_HUB_CREDENTIALS',
+                  ]]
+                 ])
+            }
+        }
         stage("Test the application"){
             steps{
                 echo "Running application tests"
