@@ -20,7 +20,7 @@ spec:
           env:
             - name: PORT
               value: "8000"
-      toleration:
+      tolerations:
         - key: node-role.kubernetes.io/master
           operator: Exists
           effect: NoSchedule
