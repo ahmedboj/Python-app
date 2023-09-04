@@ -82,7 +82,7 @@ pipeline{
                                 remote.identityFile = identity
                                 sshCommand remote: remote, command: "echo Hello from remote host"
                                 sshCommand remote: remote, command: "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                                sshCommand remote: remote, command: "kubectl apply -f ./python-app-deployment.yaml"
+                                sshCommand remote: remote, command: "kubectl apply -f python-app-deployment.yaml"
 
                         }
                 }
