@@ -20,6 +20,12 @@ spec:
           env:
             - name: PORT
               value: "8000"
+      toleration:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        node: master3  
 ---
 apiVersion: v1
 kind: Service
