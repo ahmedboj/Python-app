@@ -64,7 +64,6 @@ pipeline{
                         remote.allowAnyHosts = true
 
                         withCredentials([sshUserPrivateKey(credentialsId: 'ID_K8S', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
-
                                 remote.user = userName
                                 remote.identityFile = identity
                                 sshCommand remote: remote, command: "echo Hello from remote host"
