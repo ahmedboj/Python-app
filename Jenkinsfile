@@ -1,11 +1,6 @@
 
 pipeline{
-    agent{
-    	docker {
-            image 'ubuntu:20.04'
-            args '-u root:sudo -v $HOME/workspace/myproject:/myproject'
-        }
-    }
+    agent any
     parameters{
         string(name: 'Host', defaultValue: '192.168.102.82', description: 'The host Ip address for K8s master node')
     }
